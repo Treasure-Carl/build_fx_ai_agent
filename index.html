@@ -1,0 +1,19 @@
+CTYPE html>
+<html lang="en">
+	<head>
+		    <title>Real-time Trading</title>
+	</head>
+	<body>
+		<h1>Live Trading Data</h1>
+		<div id="data"></div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+		<script>
+			const socket = io();
+			socket.emit('request_data');
+			socket.on('update_data', (data) => {
+				document.getElementById('data').innerText = `Price: ${data.price}, Volume: ${data.volume}`;
+		        });
+		</script>
+	</body>
+</html>
+
